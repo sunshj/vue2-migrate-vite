@@ -1,5 +1,5 @@
 <template>
-  <booking-table
+  <BookingTable
     :date-range.sync="dateRange"
     :labels="labels"
     :table-data="tableData"
@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import BookingTable from '@/components/BookingTable.vue'
 import datetimeMixin from '@/mixins/datetime'
 import { delay } from '@/utils'
 
 export default {
-  components: { BookingTable },
   mixins: [datetimeMixin],
   data() {
     return {

@@ -23,24 +23,26 @@ export default defineConfig({
   plugins: [createVuePlugin()],
   server: {
     host: '0.0.0.0',
-    port: 8080,
+    port: 8080
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, 'src'),
-    },
-  },
+      '@': path.join(__dirname, 'src')
+    }
+  }
 })
 ```
 
 3. 修改 `package.json`
 
 ```json
-"type": "module",
-"scripts": {
+{
+  "type": "module",
+  "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
+  }
 }
 ```
 
@@ -134,7 +136,7 @@ const routes = setupLayouts(generatedRoutes) // edit
 
 const router = new VueRouter({
   mode: 'history',
-  routes,
+  routes
 })
 
 export default router

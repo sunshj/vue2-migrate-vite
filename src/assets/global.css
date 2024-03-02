@@ -34,6 +34,10 @@ body,
   justify-content: space-between;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .py-0 {
   padding-top: 0;
   padding-bottom: 0;
@@ -50,4 +54,8 @@ body,
 
 .w-full {
   width: 100%;
+}
+
+.gap-2 {
+  gap: 2rem;
 }

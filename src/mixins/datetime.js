@@ -23,6 +23,7 @@ export default {
     datetimeFormat(time) {
       return timeFormat(time, 'yyyy-MM-DD HH:mm')
     },
+
     dateFormat(time) {
       return timeFormat(time, 'yyyy-MM-DD')
     }

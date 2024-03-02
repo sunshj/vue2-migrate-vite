@@ -19,11 +19,13 @@
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
-    "@sunshj/eslint-config": "^1.0.1",
+    "@sunshj/eslint-config": "^1.0.6",
+    "@sunshj/plugins": "^0.1.5",
     "@sunshj/prettier-config": "^1.0.0",
     "eslint": "^8.56.0",
     "prettier": "^2.4.1",
     "sass": "^1.32.7",
+    "unplugin-vue-components": "^0.26.0",
     "vite": "^4.5.1",
     "vite-plugin-pages": "^0.32.0",
     "vite-plugin-vue-layouts": "^0.8.0",
