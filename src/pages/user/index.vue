@@ -1,5 +1,7 @@
 <template>
   <div>
+    <el-button type="primary" @click="handleAdd()">添加</el-button>
+
     <el-table v-loading="loading" :data="tableData" style="width: 100%">
       <el-table-column type="index" width="50" />
       <el-table-column label="姓名" width="180" prop="userName" />
@@ -22,8 +24,7 @@
         <template #default="scopeProps">{{ timeFormat(scopeProps.row.updatedAt) }}</template>
       </el-table-column>
       <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleAdd()">添加</el-button>
+        <template #default="scope">
           <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
           <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>

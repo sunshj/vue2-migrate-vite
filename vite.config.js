@@ -20,7 +20,7 @@ export default defineConfig({
       resolvers: [ElementUiResolver()]
     }),
     GitInfo({
-      enableVars: { lastCommitMsg: true, lastCommitTime: true },
+      enableVars: { msg: true, time: true },
       injectToHead: false
     })
   ],
@@ -33,6 +33,15 @@ export default defineConfig({
     alias: {
       '@': path.join(__dirname, 'src'),
       vue: 'vue/dist/vue.esm.js'
+    }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/element-ui')) return 'element-ui'
+        }
+      }
     }
   }
 })

@@ -9,7 +9,7 @@
         <el-input v-model="addUserForm.password" show-password type="password" clearable />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button :disabled="isSubmitting" type="primary" @click="onSubmit">立即创建</el-button>
         <el-button @click="onReset">重置</el-button>
       </el-form-item>
     </el-form>
@@ -24,6 +24,8 @@ export default {
         username: '',
         password: ''
       },
+
+      isSubmitting: false,
 
       addUserFormRules: {
         username: [
@@ -43,12 +45,16 @@ export default {
     onSubmit() {
       this.$refs.addUserFormRef.validate(async valid => {
         if (!valid) return this.$message.warning('请正确填写表单')
-
+        this.isSubmitting = true
         const { username: userName, password } = this.addUserForm
-        const { data: res } = await this.$http.post('/user', {
-          userName,
-          password
-        })
+        const { data: res } = await this.$http
+          .post('/user', {
+            userName,
+            password
+          })
+          .finally(() => {
+            this.isSubmitting = false
+          })
         if (res.code !== 200) {
           return this.$message.error(res.data)
         }

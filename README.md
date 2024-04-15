@@ -1,8 +1,6 @@
 # vue2.6 迁移 vite 指南
 
-> "vue": "^2.6.14"
->
-> "vue-router": "^3.5.1"
+> vue需要升级到2.7版本
 
 ## 一、安装/配置 vite 及相关依赖
 
@@ -89,9 +87,7 @@ not ie 11
 ## 四、环境变量
 
 1. 环境变量文件前缀改为 `VITE_APP`
-
 2. 使用 `import.meta.env` 引入环境变量
-
 3. `router/index.js` 中的 `base: process.env.BASE_URL` 可以删除
 
 ## 五、使用文件路由和布局

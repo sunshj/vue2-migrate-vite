@@ -14,7 +14,7 @@
         <el-input v-model="editUserForm.password" show-password type="password" clearable />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">更新</el-button>
+        <el-button type="primary" :disabled="isSubmitting" @click="onSubmit">更新</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -30,6 +30,7 @@ export default {
         password: ''
       },
 
+      isSubmitting: false,
       editUserFormRules: {
         username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -56,8 +57,18 @@ export default {
     },
 
     onSubmit() {
+      const { id } = this.$route.params
       this.$refs.editUserFormRef.validate(valid => {
         if (!valid) return this.$message.warning('表单填写不完整')
+        this.isSubmitting = true
+        this.$http
+          .put(`/user/${id}`, this.editUserForm)
+          .then(() => {
+            this.$message.success('更新成功')
+          })
+          .finally(() => {
+            this.isSubmitting = false
+          })
       })
     }
   }
