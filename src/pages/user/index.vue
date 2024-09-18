@@ -4,17 +4,15 @@
 
     <el-table v-loading="loading" :data="tableData" style="width: 100%">
       <el-table-column type="index" width="50" />
-      <el-table-column label="姓名" width="180" prop="userName" />
+      <el-table-column label="姓名" width="180" prop="name" />
       <el-table-column label="头像" width="180">
         <template #default="scopeProps">
-          <el-avatar :src="scopeProps.row.userAvatar" />
+          <el-avatar :src="scopeProps.row.avatar" />
         </template>
       </el-table-column>
       <el-table-column label="权限" width="180">
         <template #default="scopeProps">
-          <el-tag :type="roleTag(scopeProps.row.userRole)"
-            >{{ roleName(scopeProps.row.userRole) }}
-          </el-tag>
+          <el-tag :type="roleTag(scopeProps.row.role)">{{ roleName(scopeProps.row.role) }} </el-tag>
         </template>
       </el-table-column>
       <el-table-column label="创建时间">
@@ -78,7 +76,7 @@ export default {
 
     handleEdit(row) {
       console.log(row)
-      this.$router.push({ name: 'user-edit-id', params: { id: row.userId } })
+      this.$router.push({ name: 'user-edit-id', params: { id: row.id } })
     },
 
     handleDelete(row) {

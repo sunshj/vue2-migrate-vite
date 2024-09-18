@@ -5,7 +5,7 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Components from 'unplugin-vue-components/vite'
 import { ElementUiResolver } from 'unplugin-vue-components/resolvers'
-import { GitInfo } from '@sunshj/plugins'
+import { GitInfo, EnvDts } from '@sunshj/vite-plugins'
 
 export default defineConfig({
   plugins: [
@@ -22,7 +22,8 @@ export default defineConfig({
     GitInfo({
       enableVars: { msg: true, time: true },
       injectToHead: false
-    })
+    }),
+    EnvDts()
   ],
   server: {
     host: '0.0.0.0',

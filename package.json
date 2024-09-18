@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "prettier --write src",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "format": "prettier . --write",
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix --cache",
+    "stylelint": "stylelint --fix \"src/**/*.{vue,css,scss}\" --cache",
+    "commit": "git-cz"
   },
   "dependencies": {
     "axios": "^1.5.0",
@@ -19,12 +21,20 @@
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
-    "@sunshj/eslint-config": "^1.0.6",
-    "@sunshj/plugins": "^0.1.6",
+    "@sunshj/commitlint-config": "^1.0.0",
+    "@sunshj/eslint-config": "^2.1.2",
     "@sunshj/prettier-config": "^1.0.0",
-    "eslint": "^8.56.0",
-    "prettier": "^2.4.1",
+    "@sunshj/stylelint-config": "^1.0.2",
+    "@sunshj/vite-plugins": "^0.5.1",
+    "commitizen": "^4.3.0",
+    "commitlint": "18",
+    "cz-git": "^1.9.4",
+    "eslint": "^9.10.0",
+    "lint-staged": "15",
+    "prettier": "^2.8.8",
     "sass": "^1.32.7",
+    "simple-git-hooks": "^2.11.1",
+    "stylelint": "^16.3.1",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^4.5.1",
     "vite-plugin-pages": "^0.32.0",
@@ -32,5 +42,28 @@
     "vite-plugin-vue2": "^2.0.3",
     "vue-template-compiler": "^2.7.16"
   },
-  "prettier": "@sunshj/prettier-config"
+  "prettier": "@sunshj/prettier-config",
+  "stylelint": {
+    "extends": "@sunshj/stylelint-config"
+  },
+  "lint-staged": {
+    "src/**/*.{vue,js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{js,jsx,ts,tsx,vue,json,css,scss,md}": [
+      "prettier --write"
+    ],
+    "src/**/*.{vue,css,scss}": [
+      "stylelint --fix"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx --no-install commitlint --config commitlint.config.js --edit $1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
 }

@@ -2,8 +2,8 @@
   <div>
     <div>Add user</div>
     <el-form ref="addUserFormRef" :model="addUserForm" :rules="addUserFormRules" label-width="80px">
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="addUserForm.username" clearable />
+      <el-form-item label="用户名" prop="name">
+        <el-input v-model="addUserForm.name" clearable />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="addUserForm.password" show-password type="password" clearable />
@@ -21,14 +21,14 @@ export default {
   data() {
     return {
       addUserForm: {
-        username: '',
+        name: '',
         password: ''
       },
 
       isSubmitting: false,
 
       addUserFormRules: {
-        username: [
+        name: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
@@ -46,10 +46,10 @@ export default {
       this.$refs.addUserFormRef.validate(async valid => {
         if (!valid) return this.$message.warning('请正确填写表单')
         this.isSubmitting = true
-        const { username: userName, password } = this.addUserForm
+        const { name: name, password } = this.addUserForm
         const { data: res } = await this.$http
           .post('/user', {
-            userName,
+            name,
             password
           })
           .finally(() => {

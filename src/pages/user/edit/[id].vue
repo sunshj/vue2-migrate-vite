@@ -7,8 +7,8 @@
       :rules="editUserFormRules"
       label-width="80px"
     >
-      <el-form-item label="用户名" prop="username">
-        <el-input v-model="editUserForm.username" clearable />
+      <el-form-item label="用户名" prop="name">
+        <el-input v-model="editUserForm.name" clearable />
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input v-model="editUserForm.password" show-password type="password" clearable />
@@ -26,13 +26,13 @@ export default {
   data() {
     return {
       editUserForm: {
-        username: '',
+        name: '',
         password: ''
       },
 
       isSubmitting: false,
       editUserFormRules: {
-        username: [
+        name: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
@@ -53,7 +53,7 @@ export default {
     async getUserInfo() {
       const { id } = this.$route.params
       const { data: res } = await this.$http.get(`/user/${id}`)
-      this.editUserForm.username = res.data.userName
+      this.editUserForm.name = res.data.name
     },
 
     onSubmit() {
